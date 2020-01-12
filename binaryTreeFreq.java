@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 class Tree {
     int data;
@@ -16,28 +16,34 @@ class Tree {
 class binaryTreeFreq {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Tree root = new Tree(3);
+        Tree root = new Tree(30);
         
-        System.out.println("Enter 5 values");
+        System.out.println("The root is 30\nEnter 5 values");
         
         for(int i = 0; i < 5; i++) {
-            System.out.println("Enter a value : ");
             insertNode(sc.nextInt(),root);
         }
 
         System.out.println("The values are : ");
         inorder(root);
+        
+        System.out.println();
+        
+        System.out.print("Maximum frequency : " + freq(root,0,root.data,1));
+        System.out.println();
+        
+        sc.close();
     }
 
     public static Tree insertNode(int data,Tree root) {
         Tree newNode = new Tree(data);
         
-        if(data < root.data) {
+        if(data <= root.data) {
             if(root.left == null) {
                 root.left = newNode;
             }
             else {
-                root.left = insertNode(data, root.left);
+                insertNode(data, root.left);
             }
         }
 
@@ -46,7 +52,7 @@ class binaryTreeFreq {
                 root.right = newNode;
             }
             else {
-                root.right = insertNode(data, root.right);
+                insertNode(data, root.right);
             }
         }
         return root;
@@ -62,5 +68,29 @@ class binaryTreeFreq {
         if(root.right != null) {
             inorder(root.right);
         }
+    }
+
+    public static int freq(Tree root,int currentF,int currentVal,int maxF) {
+        if(currentVal != root.data) {
+            currentVal = root.data; currentF = 1;
+        }
+        else {
+            currentF++;
+            if(currentF > maxF) {
+                maxF = currentF;
+            }
+        }
+        
+        if(root.left != null) {
+            maxF = freq(root.left,currentF,currentVal,maxF);
+        }
+
+        //System.out.println(root.data + " " + maxF + "\t");
+        
+        if(root.right != null) {
+            maxF = freq(root.right,currentF,currentVal,maxF);
+        }
+        
+        return maxF;
     }
 }
