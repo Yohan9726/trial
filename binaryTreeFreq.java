@@ -12,6 +12,15 @@ class Tree {
     }
 }
 
+class f_and_d { //A class whose objects can store frequency and data in one place
+    int frequency;
+    int data;
+
+    public f_and_d(int f,int d) {
+        this.frequency = f;
+        this.data = d;
+    }
+}
 
 class binaryTreeFreq {
     public static void main(String[] args) {
@@ -28,8 +37,11 @@ class binaryTreeFreq {
         inorder(root);
         
         System.out.println();
+
+        f_and_d currrentVals = new f_and_d(0, root.data);
+        f_and_d maxVals = new f_and_d(1, root.data);
         
-        System.out.print("Maximum frequency : " + freq(root,0,root.data,1));
+        System.out.print("The MODE of the binary tree is : " + freq(root,currrentVals,maxVals).data);
         System.out.println();
         
         sc.close();
@@ -38,7 +50,7 @@ class binaryTreeFreq {
     public static Tree insertNode(int data,Tree root) {
         Tree newNode = new Tree(data);
         
-        if(data <= root.data) {
+        if(data < root.data) {
             if(root.left == null) {
                 root.left = newNode;
             }
@@ -53,6 +65,16 @@ class binaryTreeFreq {
             }
             else {
                 insertNode(data, root.right);
+            }
+        }
+        else {
+            if(root.left == null) {
+                root.left = newNode;
+            }
+            else {
+                Tree leftRoot = root.left;
+                root.left = newNode;
+                newNode.left = leftRoot;
             }
         }
         return root;
@@ -70,27 +92,28 @@ class binaryTreeFreq {
         }
     }
 
-    public static int freq(Tree root,int currentF,int currentVal,int maxF) {
-        if(currentVal != root.data) {
-            currentVal = root.data; currentF = 1;
+    public static f_and_d freq(Tree root,f_and_d currentVals,f_and_d maxVals) {
+        if(currentVals.data != root.data) {
+            currentVals.data = root.data; currentVals.frequency = 1;
         }
         else {
-            currentF++;
-            if(currentF > maxF) {
-                maxF = currentF;
+            currentVals.frequency++;
+            if(currentVals.frequency > maxVals.frequency) {
+                maxVals.frequency = currentVals.frequency;
+                maxVals.data = currentVals.data;
             }
         }
         
         if(root.left != null) {
-            maxF = freq(root.left,currentF,currentVal,maxF);
+            maxVals = freq(root.left,currentVals,maxVals);
         }
 
-        //System.out.println(root.data + " " + maxF + "\t");
+        //System.out.println(root.data + " " + maxVals.frequency + " currentVals.frequency : " + currentVals.frequency);
         
         if(root.right != null) {
-            maxF = freq(root.right,currentF,currentVal,maxF);
+            maxVals = freq(root.right,currentVals,maxVals);
         }
         
-        return maxF;
+        return maxVals;
     }
 }
