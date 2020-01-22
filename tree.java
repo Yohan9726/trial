@@ -10,14 +10,16 @@ class Tree {
     }
 }
 
-class tree {
+public class tree {
+    static int[] nodes = {41,42,45,40,35,59,62,57,51,100};
     public static void main(String[] args) {
 
-        Tree root = new Tree(50);
+        //Tree root = new Tree(50);
 
-        int[] nodes = {41,42,45,40,35,59,62,57,51,100};
+        Tree root = null;
+
         for(int i = 0; i < nodes.length; i++) {
-            insertNode(root,nodes[i]);
+            root = insertNode(root,nodes[i]);
         }
 
         System.out.println("The nodes are : ");
@@ -30,7 +32,11 @@ class tree {
         levelOrderTraversal(root);
     }
 
-    public static void insertNode(Tree root,int data) {
+    public static Tree insertNode(Tree root,int data) {
+
+        if(root == null) {
+            root = new Tree(data);
+        }
         
         if(data < root.data) {
             if(root.left != null) {
@@ -49,6 +55,8 @@ class tree {
                 root.right = new Tree(data);
             }
         }
+
+        return root;
     }
 
     public static void inorder(Tree root) {
@@ -85,7 +93,6 @@ class tree {
         }
 
         for(int i = 1; i <= height(root); i++) {
-            //System.out.println(i);
             levels(root,i);
         }
         System.out.println();
