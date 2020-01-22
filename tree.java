@@ -25,6 +25,9 @@ class tree {
 
         System.out.println("The height is : ");
         System.out.println(height(root));
+
+        System.out.println("The level order traversal is : ");
+        levelOrderTraversal(root);
     }
 
     public static void insertNode(Tree root,int data) {
@@ -72,6 +75,32 @@ class tree {
         }
         else {
             return(right + 1);
+        }
+    }
+
+    public static void levelOrderTraversal(Tree root) {
+        
+        if(root == null) {
+            System.out.println("No nodes in tree!");
+        }
+
+        for(int i = 1; i <= height(root); i++) {
+            //System.out.println(i);
+            levels(root,i);
+        }
+        System.out.println();
+    }
+
+    public static void levels(Tree root,int level) {
+        if(root == null) {
+            return;
+        }
+        if(level == 1) {
+            System.out.print(root.data + " ");
+        }
+        else {
+            levels(root.left,level - 1);
+            levels(root.right,level - 1);
         }
     }
 }
