@@ -6,6 +6,7 @@ class AVL {
             System.out.println(node);
             root = tree.insertNode(root,node);
         }
+        System.out.println("Change made");
 
         tree.levelOrderTraversal(root);
     }
