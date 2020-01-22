@@ -3,6 +3,7 @@ class AVL {
 
         Tree root = null;
         for(int node : tree.nodes) {
+            System.out.println(node);
             root = tree.insertNode(root,node);
         }
 
