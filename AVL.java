@@ -96,10 +96,10 @@ class AVL {
             }
             else {
                 if(weight >= 0) {
-                    checkWeight(root.left);
+                    root = checkWeight(root.left);
                 }
                 else {
-                    checkWeight(root.right);
+                    root = checkWeight(root.right);
                 }
             }
         return root;
