@@ -18,7 +18,8 @@ class collects {
         while(i.hasNext()) {
             System.out.println(i.next());
         }
-        //a.retainAll(b);
+        a.retainAll(b);
+        System.out.println("a.equals(b) = " + a.equals(b));
         System.out.println(a.subList(0,1));
     }
 }
