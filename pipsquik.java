@@ -5,19 +5,20 @@ import java.io.*;
 /* Name of the class has to be "Main" only if the class is public. */
 class pipsquik
 {
-	public static void main (String[] args) throws java.lang.Exception
-	{
-		// your code goes here
+public static void main (String[] args) throws java.lang.Exception
+{
+// your code goes here
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
-        int tests = Integer.parseInt(s);
+        //String s = br.readLine();
+        int tests=0;
+        try{tests = Integer.parseInt(br.readLine());}catch(Exception e){}
         int N,H,Y1,Y2,L;
 
         int i = 0;
         int count = 0;
         int[] answers = new int[tests];
 
-		while(tests-- > 0) {
+        while(tests > 0) {
             String[] data = br.readLine().split(" ");
             N = Integer.parseInt(data[0]);
             H = Integer.parseInt(data[1]);
@@ -46,12 +47,13 @@ class pipsquik
 
             answers[i++] = count;
             count = 0;
+            tests--;
         }
         for(int ans : answers) {
             System.out.println(ans);
         }
     }
-    
+   
     public static int barrier(int t,int X, int H, int Y1, int Y2, int L) {
         if(t == 1) {
             if(H - Y1 <= X) {
