@@ -1,5 +1,4 @@
-import java.util.*;
-import java.lang.*;
+import java.time.*;
 import java.io.*;
 
 /* Name of the class has to be "Main" only if the class is public. */
@@ -11,46 +10,58 @@ public static void main (String[] args) throws java.lang.Exception
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         //String s = br.readLine();
         int tests=0;
-        try{tests = Integer.parseInt(br.readLine());}catch(Exception e){}
-        int N,H,Y1,Y2,L;
+        try {
 
-        int i = 0;
-        int count = 0;
-        int[] answers = new int[tests];
+            Instant start = Instant.now();
 
-        while(tests > 0) {
-            String[] data = br.readLine().split(" ");
-            N = Integer.parseInt(data[0]);
-            H = Integer.parseInt(data[1]);
-            Y1 = Integer.parseInt(data[2]);
-            Y2 = Integer.parseInt(data[3]);
-            L = Integer.parseInt(data[4]);
+            tests = Integer.parseInt(br.readLine());
+            int N,H,Y1,Y2,L;
 
-            while(N-- > 0) {
-                String[] testCases = br.readLine().split(" ");
-                int t = Integer.parseInt(testCases[0]);
-                int X = Integer.parseInt(testCases[1]);
+            int i = 0;
+            int count = 0;
+            int[] answers = new int[tests];
 
-                int result = barrier(t, X, H, Y1, Y2, L);
+            while(tests > 0) {
+                String[] data = br.readLine().split(" ");
+                N = Integer.parseInt(data[0]);
+                H = Integer.parseInt(data[1]);
+                Y1 = Integer.parseInt(data[2]);
+                Y2 = Integer.parseInt(data[3]);
+                L = Integer.parseInt(data[4]);
 
-                if(result == -1) {
-                    break;
+                while(N-- > 0) {
+                    String[] testCases = br.readLine().split(" ");
+                    int t = Integer.parseInt(testCases[0]);
+                    int X = Integer.parseInt(testCases[1]);
+
+                    int result = barrier(t, X, H, Y1, Y2, L);
+
+                    if(result == -1) {
+                        break;
+                    }
+                    else if(result == 0) {
+                        count++;
+                        L--;
+                    }
+                    else {
+                        count++;
+                    }
                 }
-                else if(result == 0) {
-                    count++;
-                    L--;
-                }
-                else {
-                    count++;
-                }
+
+                answers[i++] = count;
+                count = 0;
+                tests--;
+            }
+            for(int ans : answers) {
+                System.out.println(ans);
             }
 
-            answers[i++] = count;
-            count = 0;
-            tests--;
+            Instant finish = Instant.now();
+
+            System.out.println("Time taken : " + Duration.between(start, finish).toMillis());
         }
-        for(int ans : answers) {
-            System.out.println(ans);
+        catch(Exception e) {
+
         }
     }
    
