@@ -67,18 +67,22 @@ class nochange {
                 sum += D[max];
                 count++;
             }
-
             if(minSum == -1) {
                 minSum = sum;
             }
 
-            if(sum <= minSum && sum > P) {
+            if(sum <= minSum && sum > P && count > 1) {
                 minSum = sum;
                 sum -= D[max];
+
+                if(sum > P) {
+                    minSum = sum;
+                }
+                
                 count--;
             }
 
-            if(sum == P) {
+            if(sum == P || (sum > P && sum > minSum)) {
                 sum -= D[max] * count;
                 count = 0;
             }
