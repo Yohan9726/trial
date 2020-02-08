@@ -1,9 +1,14 @@
 import java.io.*;
+import java.time.Duration;
+import java.time.Instant;
 
 class nochange {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws java.lang.Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int tests = Integer.parseInt(br.readLine());
+        
+        Instant start = Instant.now();
+        
         String[] answers = new String[tests];
         int x = 0;
         try {
@@ -28,6 +33,10 @@ class nochange {
 
         catch(Exception e) {
         }
+
+        Instant finish = Instant.now();
+
+        System.out.println("Time elapsed : " + Duration.between(start, finish).toMillis());
     }
 
     public static String checkChange(int P, int[] D) {
