@@ -15,6 +15,8 @@ import java.util.*;
 .skip(long skipUptoThisNumber) : To skip the first elements upto the specified value
 .max(Comparator c) : Finds the maximum value based on comparator
 .min(Comparator c) : Find the minimum value based on comparator 
+.reduce(initialize,(var1,var2)) : To get an accumulated value in var1 based on the logic given
+.count() : Counts number of elements in stream
 */
 
 class streamAPI {
@@ -56,11 +58,11 @@ class streamAPI {
         .map(num -> num)
         .max((n1,n2) -> // Can also be written as : max((n1,n2) -> n1 > n2 ? 1 : -1)
         {
-            if(n1 > n2)
+            if(n1 > n2) //n1 and n2 are two variables that refer to 2 elements of the stream
             return 1; //1 denotes the first variable. n1 in this case
             else 
             return -1; //-1 denotes the second variable. n2 in this case
-        }).get(); //n1 and n2 are two variables that refer to 2 elements of the stream
+        }).get(); //get() method is mandatory to get the maximum element
         //If n1 is greater than n2 then choose n1 (denoted by the integer 1) else choose n2
 
         System.out.println("Max number : " + maxNumber);
