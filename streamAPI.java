@@ -24,7 +24,7 @@ class streamAPI {
         l.add(20);
         l.add(30);
 
-        // Printing all the items in list using stream
+        // Printing items in list using stream
 
         l.stream()
         .filter(integer -> integer > 10 && integer < 30)
@@ -38,5 +38,31 @@ class streamAPI {
 
         System.out.println("New list");
         m.forEach(System.out::println);
+
+
+        //reduce()
+
+        int sumOfNumbers = l.stream()
+        .map(num -> num) //Taking the entire numbers and not any properties. Can be commented out in this case.
+        .reduce(0,(sumAccumulate,numbers) -> sumAccumulate + numbers); //The first value is the initialization of sumAccumulate
+        //The sum is accumulated in the first variable
+        //The second variable is the reference to each element of the stream
+
+        System.out.println("Sum : " + sumOfNumbers);
+
+        //max()
+
+        int maxNumber = l.stream()
+        .map(num -> num)
+        .max((n1,n2) -> // Can also be written as : max((n1,n2) -> n1 > n2 ? 1 : -1)
+        {
+            if(n1 > n2)
+            return 1; //1 denotes the first variable. n1 in this case
+            else 
+            return -1; //-1 denotes the second variable. n2 in this case
+        }).get(); //n1 and n2 are two variables that refer to 2 elements of the stream
+        //If n1 is greater than n2 then choose n1 (denoted by the integer 1) else choose n2
+
+        System.out.println("Max number : " + maxNumber);
     }
 }
