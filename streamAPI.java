@@ -5,6 +5,18 @@ import java.util.*;
 //It does not store any data itself
 //Operations performed on stream does not alter source
 
+//Most used functions are :
+/*
+.stream() : To convert to stream
+.filter() : To filter elements based on a predicate
+.map() : To generate a new stream of elements with the chosen properties
+.collect() : To create a new list or other data structures from the stream
+.limit(long limitNumber) : To limit number of data upto a certain point
+.skip(long skipUptoThisNumber) : To skip the first elements upto the specified value
+.max(Comparator c) : Finds the maximum value based on comparator
+.min(Comparator c) : Find the minimum value based on comparator 
+*/
+
 class streamAPI {
     public static void main(String[] args) throws java.lang.Exception {
         List<Integer> l = new ArrayList<Integer>();
