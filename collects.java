@@ -50,6 +50,6 @@ class collects {
             hs.replace("abc",20);
         }
 
-        System.out.println(hs);
+        System.out.println(hs);         
     }
 }
