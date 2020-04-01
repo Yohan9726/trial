@@ -1,0 +1,12 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class class1 {
+	public static void main(String[] args) throws InterruptedException {
+		System.out.println("Hello World");
+		System.setProperty("webdriver.chrome.driver","/mnt/Programs/Eclipse Projects/Project 1/chromedriver_linux64/chromedriver");
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://www.selenium.dev/");
+		System.out.println(driver.getTitle());
+		driver.close();
+	}
+}
